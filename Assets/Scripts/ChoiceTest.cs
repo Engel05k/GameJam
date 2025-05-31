@@ -8,86 +8,88 @@ public class ChoiceTest : MonoBehaviour
     #region Variables
     [SerializeField] private GameObject buttonYes;
     [SerializeField] private GameObject buttonNo;
-    [SerializeField] private int timesSayYes;
-    [SerializeField] private int timesSayNo;
-    [SerializeField] private int timesDidnAct;
-
-    [SerializeField] private TextMeshProUGUI yesText;
-    [SerializeField] private TextMeshProUGUI noText;
-    [SerializeField] private TextMeshProUGUI noActText;
+    [SerializeField] TextManager textManager;
 
 
-
-
+    [SerializeField] private bool buttonPress = false;
     [SerializeField] private float timeToNoAct;
 
 
-    [SerializeField] private float seconds;
+    [SerializeField] private float seconds;    
     #endregion
     public void Option1()
     {
 
         Debug.Log("Jugador Elige opcion 1");
-        StopCoroutine(NoAct());
+        buttonPress = true;
         buttonYes.SetActive(false);
-        buttonNo.SetActive(false);
-        timesSayYes++;
-        StartCoroutine(NewOptions());
-    
+        buttonNo.SetActive(false);        
+
     }
 
 
     public void Option2()
     {
         Debug.Log("Jugador Elige opcion 2");
-        StopCoroutine(NoAct());
+        buttonPress = true;
         buttonYes.SetActive(false);
         buttonNo.SetActive(false);
-        timesSayNo++;
-        StartCoroutine(NewOptions());
+       
+
     }
 
-    private IEnumerator NewOptions()
+    public IEnumerator NewOptions()
     {
+        if (buttonPress)
+        {
 
-        yield return new WaitForSeconds(seconds);
-        MakeButtonsAppear();
-        ChangeText();
+            yield return new WaitForSeconds(seconds);
+            MakeButtonsAppear();
+        }
+        else
+        {
+            Debug.Log("buttonPress pasa a true");
+
+            buttonPress= true;
+            yield return new WaitForSeconds(seconds);
+            MakeButtonsAppear();
+        }
+           
 
 
     }
 
     private void MakeButtonsAppear()
     {
-        StopCoroutine(NoAct());
         buttonYes.SetActive(true);
         buttonNo.SetActive(true);
+        buttonPress = false;
         StartCoroutine(NoAct());
 
     }
-    private void ChangeText()
-    {
-        yesText.text = timesSayYes.ToString();
-        noText.text = timesSayNo.ToString();
-        noActText.text = timesDidnAct.ToString();
-    
-    
-    }
     private void Start()
     {
-        MakeButtonsAppear();
+        MakeButtonsAppear();        
     }
 
     private IEnumerator NoAct()
     {
+
         yield return new WaitForSeconds(timeToNoAct);
 
-        buttonYes.SetActive(false);
-        buttonNo.SetActive(false);
-        timesDidnAct++;
-        Debug.Log("El Jugador decidio no interactuar");
+        if (buttonPress == false)
+        {
+            buttonYes.SetActive(false);
+            buttonNo.SetActive(false);
+            textManager.ChangeText();
+            Debug.Log("El Jugador decidio no interactuar");
 
+        }
+
+    }
+
+    public void test()
+    {
         StartCoroutine(NewOptions());
-        StopCoroutine(NoAct());
     }
 }

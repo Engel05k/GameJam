@@ -976,13 +976,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonYes: {fileID: 237995883}
   buttonNo: {fileID: 1069255719}
-  timeSayYes: 0
-  timeSayNo: 0
-  timeDidnAct: 0
+  timesSayYes: 0
+  timesSayNo: 0
+  timesDidnAct: 0
   yesText: {fileID: 701214797}
   noText: {fileID: 1525109609}
   noActText: {fileID: 766185306}
-  timeToNoAct: 5
+  test1: 0
+  timeToNoAct: 4
   seconds: 4
 --- !u!1 &1525109607
 GameObject:
