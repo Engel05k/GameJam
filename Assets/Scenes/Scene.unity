@@ -915,8 +915,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17a4b3f158f284d439738538a361992b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialoguesPerDay:
+  - dia: 1
+    scene:
+    - scene: 1
+      text: "Hola, Soy Max, un estudiante de la carrera de dise\xF1o de videojuegos."
+    - scene: 2
+      text: Tengo una vida muy simple... Aburrida... No ocurre nada, no hago mucho.
+    - scene: 3
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+    - scene: 4
+      text: "otro d\xEDa igual... Esperemos que el proximo tambien sea as\xED..."
+    - scene: 5
+      text: voy a ver mi celular antes de dormir
+  - dia: 2
+    scene:
+    - scene: 1
+      text: "Buenos d\xEDas... supongo"
+    - scene: 2
+      text: "No quer\xEDa ir a clase hoy, pero que diran mis compa\xF1eros si falto
+        mucho"
+    - scene: 3
+      text: Creo saber la respuesta...
+    - scene: 4
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+    - scene: 5
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+  - dia: 3
+    scene:
+    - scene: 1
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+    - scene: 2
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+    - scene: 3
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+    - scene: 4
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+    - scene: 5
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+  - dia: 4
+    scene:
+    - scene: 1
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+    - scene: 2
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+    - scene: 3
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+    - scene: 4
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
+    - scene: 5
+      text: "Lo \xFAnico por lo que me preocupo, es no decepcionar a mis padres..."
   textMeshProUGUI: {fileID: 815369922}
   textDay: {fileID: 154713292}
+  typingSpeed: 0.05
 --- !u!4 &1025697841
 Transform:
   m_ObjectHideFlags: 0
@@ -1021,7 +1072,7 @@ GameObject:
   - component: {fileID: 1218944804}
   - component: {fileID: 1218944803}
   m_Layer: 5
-  m_Name: ChangeText
+  m_Name: ChangeText Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1734,8 +1785,8 @@ RectTransform:
   - {fileID: 154713291}
   - {fileID: 847368596}
   - {fileID: 681965157}
-  - {fileID: 1188298932}
   - {fileID: 909984173}
+  - {fileID: 1188298932}
   - {fileID: 2065058808}
   - {fileID: 1218944802}
   m_Father: {fileID: 1635580884}

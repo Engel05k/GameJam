@@ -81,8 +81,8 @@ public class ChoiceTest : MonoBehaviour
         {
             buttonYes.SetActive(false);
             buttonNo.SetActive(false);
-            textManager.ChangeText();
-            Debug.Log("El Jugador decidio no interactuar");
+            //textManager.ChangeText();
+            //Debug.Log("El Jugador decidio no interactuar");
 
         }
 

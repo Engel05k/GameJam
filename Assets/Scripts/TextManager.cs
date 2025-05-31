@@ -1,119 +1,99 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
+using System.Collections;
 
 public class TextManager : MonoBehaviour
 {
     private StatsScript statsScript;
+    [SerializeField] private List<DialogueDay> DialoguesPerDay;
     [SerializeField] TextMeshProUGUI textMeshProUGUI;
     [SerializeField] TextMeshProUGUI textDay;
-
+    [SerializeField] private float typingSpeed = 0.03f;
+    private Coroutine currentCoroutine;
 
     void Start()
     {
         statsScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<StatsScript>();
-        if (statsScript.day == 1 && statsScript.scene == 1)
-        {
-            textMeshProUGUI.text = "Hola, Soy Max, un estudiante de la carrera de diseño de videojuegos.";
-            statsScript.scene += 1;
-            ChangeDay();
-        }
+        ShowCurrentDialog();
+        ChangeDay();
     }
     public void ChangeText()
     {
+        {
+            DialogueDay currentDay = DialoguesPerDay.Find(d => d.dia == statsScript.day);
+            if (currentDay == null)
+            {
+                Debug.Log("No hay dialogos para este dia");
+                return;
+            }
 
-        if (statsScript.day == 1 && statsScript.scene == 2)
-        {
-            textMeshProUGUI.text = "Tengo una vida muy simple... Aburrida... No ocurre nada, no hago mucho.";
+            DialogueScene nextScene = currentDay.scene.Find(s => s.scene == statsScript.scene + 1);
+
+            if (nextScene != null)
+            {
+                statsScript.scene++;
+                StartTyping(nextScene.text);
+            }
+            else
+            {
+                statsScript.day++;
+                statsScript.scene = 1;
+                ChangeDay();
+
+                currentDay = DialoguesPerDay.Find(d => d.dia == statsScript.day);
+                if (currentDay != null && currentDay.scene.Count > 0)
+                {
+                    StartTyping(currentDay.scene[0].text);
+                }
+                else
+                {
+                    StartTyping("No hay mas dialogos");
+                    Debug.LogWarning("No se encontraron dialogos para el dia" + statsScript.day);
+                }
+            }
         }
-        if (statsScript.day == 1 && statsScript.scene == 3)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...";
-        }
-        if (statsScript.day == 1 && statsScript.scene == 4)
-        {
-            textMeshProUGUI.text = "otro día igual... Esperemos que el proximo tambien sea así...";
-        }
-        if (statsScript.day == 1 && statsScript.scene == 5)
-        {
-            textMeshProUGUI.text = "voy a ver mi celular antes de dormir";
-            statsScript.day += 1;
-            statsScript.scene = 1;            
-            return;
-        }
-        if (statsScript.day == 2 && statsScript.scene == 1)
-        {
-            textMeshProUGUI.text = "Buenos días... supongo";
-            ChangeDay();
-        }
-        if (statsScript.day == 2 && statsScript.scene == 2)
-        {
-            textMeshProUGUI.text = "No quería ir a clase hoy, pero que diran mis compañeros si falto mucho";
-        }
-        if (statsScript.day == 2 && statsScript.scene == 3)
-        {
-            textMeshProUGUI.text = "Creo saber la respuesta...";
-        }
-        if (statsScript.day == 2 && statsScript.scene == 4)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...2.4";
-        }
-        if (statsScript.day == 2 && statsScript.scene == 5)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...2.5";
-            statsScript.day += 1;
-            statsScript.scene = 1;            
-            return;
-        }
-        if (statsScript.day == 3 && statsScript.scene == 1)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...3.1";
-            ChangeDay();
-        }
-        if (statsScript.day == 3 && statsScript.scene == 2)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...3.2";
-        }
-        if (statsScript.day == 3 && statsScript.scene == 3)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...3.3";
-        }
-        if (statsScript.day == 3 && statsScript.scene == 4)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...3.4";
-        }
-        if (statsScript.day == 3 && statsScript.scene == 5)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...3.5";
-            statsScript.day += 1;
-            statsScript.scene = 1;            
-            return;
-        }
-        if (statsScript.day == 4 && statsScript.scene == 1)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...4.1";
-            ChangeDay();
-        }
-        if (statsScript.day == 4 && statsScript.scene == 2)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...4.2";
-        }
-        if (statsScript.day == 4 && statsScript.scene == 3)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...4.3";
-        }
-        if (statsScript.day == 4 && statsScript.scene == 4)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...4.4";
-        }
-        if (statsScript.day == 4 && statsScript.scene == 5)
-        {
-            textMeshProUGUI.text = "Lo único por lo que me preocupo, es no decepcionar a mis padres...4.5";
-            statsScript.day += 1;
-            statsScript.scene = 1;           
-            return;
-        }
-        statsScript.scene += 1;
     }
+    private void ShowCurrentDialog()
+    {
+        DialogueDay currentDay = DialoguesPerDay.Find(d => d.dia == statsScript.day);
+        if (currentDay == null)
+        {
+            Debug.LogWarning("No se encontraron dialogos para el dia" + statsScript.day);
+            return;
+        }
+
+        DialogueScene currentScene = currentDay.scene.Find(s => s.scene == statsScript.scene);
+
+        if (currentScene != null)
+        {
+            StartTyping(currentScene.text);
+        }
+        else
+        {
+            StartTyping("No hay dialogo para esta escena");
+        }
+    }
+
+    private void StartTyping(string textToType)
+    {
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+        currentCoroutine = StartCoroutine(TypeText(textToType));
+    }
+
+    private IEnumerator TypeText(string fullText)
+    {
+        textMeshProUGUI.text = "";
+        foreach (char c in fullText)
+        {
+            textMeshProUGUI.text += c;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+    }
+
     void ChangeDay ()
     {
         textDay.text = "Día " + statsScript.day;
