@@ -13,7 +13,7 @@ public class TextManager : MonoBehaviour
         statsScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<StatsScript>();
         if (statsScript.day == 1 && statsScript.scene == 1)
         {
-            textMeshProUGUI.text = "Hola, Soy Max, un estudiante de Toulouse Lautrec, de la carrera de diseño de videojuegos.";
+            textMeshProUGUI.text = "Hola, Soy Max, un estudiante de la carrera de diseño de videojuegos.";
             statsScript.scene += 1;
             ChangeDay();
         }
