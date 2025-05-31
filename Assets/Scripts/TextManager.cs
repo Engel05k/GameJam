@@ -10,6 +10,7 @@ public class TextManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI textMeshProUGUI;
     [SerializeField] TextMeshProUGUI textDay;
     [SerializeField] private float typingSpeed = 0.03f;
+    [SerializeField] bool textFinished;
     private Coroutine currentCoroutine;
 
     void Start()
@@ -20,7 +21,9 @@ public class TextManager : MonoBehaviour
     }
     public void ChangeText()
     {
+        if (textFinished == true)
         {
+            textFinished = false;
             DialogueDay currentDay = DialoguesPerDay.Find(d => d.dia == statsScript.day);
             if (currentDay == null)
             {
@@ -53,6 +56,7 @@ public class TextManager : MonoBehaviour
                 }
             }
         }
+        
     }
     private void ShowCurrentDialog()
     {
@@ -92,6 +96,8 @@ public class TextManager : MonoBehaviour
             textMeshProUGUI.text += c;
             yield return new WaitForSeconds(typingSpeed);
         }
+        textFinished = true;
+
     }
 
     void ChangeDay ()
