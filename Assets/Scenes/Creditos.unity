@@ -180,8 +180,8 @@ MonoBehaviour:
 
     Tiempo de desarrollo:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -314,10 +314,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Director de Arte:\nDise\xF1adores de personajes:\nDise\xF1ador de Escenarios:\n"
+  m_text: 'Art Director: Engel Indo
+
+    Character Designers: Adela Romero
+
+    Set
+    Designer: Adela Romero
+
+'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -450,12 +457,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Herramientas:
-
-    Tiempo de desarrollo:'
+  m_text: "Tools: \nUnity\nDevelopment time: \n48 hours"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -588,10 +593,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Muisica y sonido:\n Arte y Animaci\xF3n"
+  m_text: "Music and Sound:  \n- Johanny Otoya\n- Andree Cardenas\nArt and Animation:"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -732,8 +737,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Max
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1027,8 +1032,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Desarrollado por:\r\n- Capygames / corrupted files\r\n\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1191,8 +1196,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Max
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1456,8 +1461,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Muisica y sonido:\n Arte y Animaci\xF3n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1768,11 +1773,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Director de proyecto: Engel Indo\nDise\xF1ador de juego: \nProgramadores:
-    \n- Johanny Otoya\n- Francisco Pretell\r\n\r\r\n\r\n\r"
+  m_text: "Project Manager:  \n- Engel Indo\r\nGame Designer:  \n- Adela Romero\n-
+    Andree Cardenas\r\nProgrammers:\r\n- Johanny Otoya\r\n- Francisco Pretell\n\r\n\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2088,8 +2093,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Director de Arte:\nDise\xF1adores de personajes:\nDise\xF1ador de Escenarios:\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2222,10 +2227,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Desarrollado por:\r\n- Capygames / corrupted files\r\n\r"
+  m_text: 'Developed by:
+
+    Corrupted files'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2361,8 +2368,8 @@ MonoBehaviour:
   m_text: "Director de proyecto: Engel Indo\nDise\xF1ador de juego: \nProgramadores:
     \n- Johanny Otoya\n- Francisco Pretell\r\n\r\r\n\r\n\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
+  m_sharedMaterial: {fileID: 2782022884581962772, guid: 82c58127eebc5ed48be6de8988334da3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
