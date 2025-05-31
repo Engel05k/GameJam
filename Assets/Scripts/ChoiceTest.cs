@@ -8,9 +8,9 @@ public class ChoiceTest : MonoBehaviour
     #region Variables
     [SerializeField] private GameObject buttonYes;
     [SerializeField] private GameObject buttonNo;
-    [SerializeField] private int timeSayYes;
-    [SerializeField] private int timeSayNo;
-    [SerializeField] private int timeDidnAct;
+    [SerializeField] private int timesSayYes;
+    [SerializeField] private int timesSayNo;
+    [SerializeField] private int timesDidnAct;
 
     [SerializeField] private TextMeshProUGUI yesText;
     [SerializeField] private TextMeshProUGUI noText;
@@ -31,7 +31,7 @@ public class ChoiceTest : MonoBehaviour
         StopCoroutine(NoAct());
         buttonYes.SetActive(false);
         buttonNo.SetActive(false);
-        timeSayYes++;
+        timesSayYes++;
         StartCoroutine(NewOptions());
     
     }
@@ -43,7 +43,7 @@ public class ChoiceTest : MonoBehaviour
         StopCoroutine(NoAct());
         buttonYes.SetActive(false);
         buttonNo.SetActive(false);
-        timeSayNo++;
+        timesSayNo++;
         StartCoroutine(NewOptions());
     }
 
@@ -67,9 +67,9 @@ public class ChoiceTest : MonoBehaviour
     }
     private void ChangeText()
     {
-        yesText.text = timeSayYes.ToString();
-        noText.text = timeSayNo.ToString();
-        noActText.text = timeDidnAct.ToString();
+        yesText.text = timesSayYes.ToString();
+        noText.text = timesSayNo.ToString();
+        noActText.text = timesDidnAct.ToString();
     
     
     }
@@ -84,7 +84,7 @@ public class ChoiceTest : MonoBehaviour
 
         buttonYes.SetActive(false);
         buttonNo.SetActive(false);
-        timeDidnAct++;
+        timesDidnAct++;
         Debug.Log("El Jugador decidio no interactuar");
 
         StartCoroutine(NewOptions());
