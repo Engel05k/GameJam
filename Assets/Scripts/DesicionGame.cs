@@ -115,6 +115,7 @@ public class DesicionGame : MonoBehaviour
             hola = true;
         }
         ChangeColor();
+        OcultarTodosLosBotones();
     }
 
     public void TomarDecision(string Escena)

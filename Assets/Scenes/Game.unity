@@ -2244,9 +2244,9 @@ MonoBehaviour:
   botonSalirteDeLaClase: {fileID: 147303233}
   botonSalirConJoshua: {fileID: 832281706}
   botonDormirTodoCamino: {fileID: 549393985}
-  scenadibujo: Draw
+  scenadibujo: Minigame - Drawing
   scenamusica: MusicMinigameTest
-  scenafinal: Final - Bueno
+  scenafinal: Final-Bueno
   escenaver: 0
   diaver: 0
 --- !u!4 &417886128
@@ -5623,7 +5623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1025697840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6439,7 +6439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1243274352
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8113,7 +8113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1648194651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9003,7 +9003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1861106119
 RectTransform:
   m_ObjectHideFlags: 0
