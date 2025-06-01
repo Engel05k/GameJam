@@ -153,9 +153,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -188, y: 348}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 129, y: 386}
+  m_SizeDelta: {x: 655.46, y: 251.55}
+  m_Pivot: {x: 0.5, y: 0.4999999}
 --- !u!114 &53918870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +176,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MAX
+  m_text: 'Max''s
+
+    Daily Life'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a26dd554482d584a808b2658de973b9, type: 2}
   m_sharedMaterial: {fileID: -5061871482834671027, guid: 9a26dd554482d584a808b2658de973b9, type: 2}
@@ -185,8 +187,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -203,12 +205,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 210.14
+  m_fontSize: 116.55
   m_fontSizeBase: 210.14
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 500
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -241,7 +243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -111.96634, z: -362.10333, w: 64.32094}
+  m_margin: {x: 0, y: -0.71685416, z: 0.48751834, w: 1.1422195}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -794,6 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 2064063444}
   speed: 1
+  enterKeySceneName: 
 --- !u!4 &469166525
 Transform:
   m_ObjectHideFlags: 0
