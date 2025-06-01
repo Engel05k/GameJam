@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-
 using UnityEngine;
 
 public class MusicMinigame : MonoBehaviour
@@ -25,40 +23,41 @@ public class MusicMinigame : MonoBehaviour
 
     private void Start()
     {
-
         audioSource = GetComponent<AudioSource>();
     }
 
 
     private void Update()
     {
-        notasPantalla = FindObjectsOfType<LogicaNotas>();
-
+        notasPantalla = Object.FindObjectsOfType<LogicaNotas>();
         if (Input.GetKeyDown(key0))
         {
             PlayNote(0);
             CheckNote();
+            CheckPresion(0);
         }
         if (Input.GetKeyDown(key1))
         {
             PlayNote(1);
             CheckNote();
+            CheckPresion(1);
         }
         if (Input.GetKeyDown(key2))
         {
             PlayNote(2);
             CheckNote();
+            CheckPresion(2);
         }
         if (Input.GetKeyDown(key3))
         {
             PlayNote(3);
             CheckNote();
+            CheckPresion(3);
         }
     }
 
     private void PlayNote(int note)
     {
-
         if (note < 0 || note >= sounds.Length) 
         {
             return;
@@ -66,13 +65,10 @@ public class MusicMinigame : MonoBehaviour
     
         audioSource.PlayOneShot(sounds[note]);
         sequence.Add(note);
-
-
     }
 
     private void CheckNote()
     {
-
         if (sequence.Count > maxAmountKeys)
         {
             sequence.RemoveAt(0);
@@ -92,12 +88,20 @@ public class MusicMinigame : MonoBehaviour
     }
     private void CheckPresion(int idNota)
     {
-        foreach(var nota in notasPantalla)
+        if (notasPantalla == null || notasPantalla.Length == 0)
         {
-            Debug.Log("Nota Acertada");
-            PlayNote(idNota);
-            Destroy(nota.gameObject);
+            Debug.Log("No hay notas en pantalla");
             return;
+        }
+
+        foreach (var nota in notasPantalla)
+        {
+            if (nota.adentro && nota.notaID == idNota)
+            {
+                Debug.Log("Nota Acertada");
+                Destroy(nota.gameObject);
+                return;
+            }
         }
         Debug.Log("Fallaste nota");
     }
@@ -117,6 +121,7 @@ public class MusicMinigame : MonoBehaviour
         }
         return true;
     }
+
 }
 
 
