@@ -6,6 +6,7 @@ public class Fade : MonoBehaviour
 {
     [SerializeField] private Image fadeImage;
     [SerializeField] private float speed = 1f;
+    [SerializeField] private string enterKeySceneName;
 
     private bool isFadingOut = false;
     private bool isFadingIn = false;
@@ -18,6 +19,11 @@ public class Fade : MonoBehaviour
 
     private void Update()
     {
+            if (!isFadingOut && !isFadingIn && !string.IsNullOrEmpty(enterKeySceneName) && Input.GetKeyDown(KeyCode.Return))
+            {
+                TriggerFadeOut(enterKeySceneName);
+            }
+
         if (isFadingIn)
         {
             float newAlpha = fadeImage.color.a - Time.deltaTime * speed;
@@ -63,5 +69,10 @@ public class Fade : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void OnButtonFadeOut(string targetScene)
+    {
+        TriggerFadeOut(targetScene);
     }
 }
