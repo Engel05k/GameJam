@@ -19,5 +19,9 @@ public class StatsScript : MonoBehaviour
     public void ChangeHealth(float change)
     {
         mentalHealth += change;
-    }       
+    }
+    public float TotalHealth()
+    {
+        return Mathf.FloorToInt((mentalHealth + selfConfidence + socialSkills) / 3f);
+    }
 }
