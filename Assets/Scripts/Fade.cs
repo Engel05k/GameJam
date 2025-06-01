@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Fade : MonoBehaviour
 {
     [SerializeField] private Image fadeImage;
-    [SerializeField] private float speed = 1f;
+    [SerializeField] private float speed = 2f;
     [SerializeField] private string enterKeySceneName;
 
     private bool isFadingOut = false;
@@ -17,6 +17,11 @@ public class Fade : MonoBehaviour
         SetAlpha(0f);
     }
 
+    private void Start()
+    {
+        SetAlpha(1f);
+        TriggerFadeIn();
+    }
     private void Update()
     {
             if (!isFadingOut && !isFadingIn && !string.IsNullOrEmpty(enterKeySceneName) && Input.GetKeyDown(KeyCode.Return))

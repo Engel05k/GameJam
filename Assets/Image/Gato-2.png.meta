@@ -359,7 +359,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Gato-2_0: -1277703157424190987
+      Gato-2_1: 6717752907828972001
+      Gato-2_2: 1925807307914548917
+      Gato-2_3: -3728206080929243435
+      Gato-2_4: -2884394975007091717
+      Gato-2_5: -4285047229608548490
+      Gato-2_6: 620072130289742184
+      Gato-2_7: -4297651326804162868
+      Gato-2_8: 4866587530690544968
+      Gato-2_9: -487314917269444529
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
