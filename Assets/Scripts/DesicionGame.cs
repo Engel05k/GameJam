@@ -3,22 +3,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class DesicionGame : MonoBehaviour
-{
-    public Text diaTexto;
-    public Text energiaTexto;
-    public Text felicidadTexto;
+{   
+    [SerializeField] string escena;   
 
-    private Scene scene;
-    [SerializeField] string escena;
-    [SerializeField] int Dia;
-
-    [SerializeField] Image Alarma;
+    /*[SerializeField] Image Alarma;
     [SerializeField] Image BusSolo;
     [SerializeField] Image BusJoshua;
     [SerializeField] Image clase;
     [SerializeField] Image regresoBus;
     [SerializeField] Image salidaFinalJoshua;
-    [SerializeField] Image YaEnCasa;
+    [SerializeField] Image YaEnCasa;*/
 
     [Header("Día 2")]
     [Header("Alarma")]
@@ -55,21 +49,19 @@ public class DesicionGame : MonoBehaviour
     [Header("alarma")]
     [SerializeField] private GameObject botonEscribirleJoshua;     
     [Header("Ida Bus")]
-    [SerializeField] private GameObject botonLeerDocumentosDia4;
-    [SerializeField] private GameObject botonDormirDia4;
+    [SerializeField] private GameObject botonLeerDocumentosDia4;    
     [SerializeField] private GameObject botonHablarConJoshua;
     [Header("En clase")]
     [SerializeField] private GameObject botonParticipar;
     [SerializeField] private GameObject botonSalirteDeLaClase;
     [Header("Regreso Bus")]
     [SerializeField] private GameObject botonSalirConJoshua;
-    [SerializeField] private GameObject botonDormirTodoCamino;
-    [SerializeField] private GameObject botonEscucharMusicaDia4;
+    [SerializeField] private GameObject botonDormirTodoCamino;    
      
 
 
     static private bool dibujoHecho = false;   
-    static private bool hasDormiidoClase1 = false;      
+    static private bool hasDormidoClase1 = false;      
     static bool hasConocidoJoshua = false;
     static private bool hasHabladoJoshuaBus = false;  
     static private bool hasEscritoJoshua = false;      
@@ -87,6 +79,7 @@ public class DesicionGame : MonoBehaviour
                 if (StatsScript.day == 2)
                 {
                     botonLevantarse.SetActive(true);
+                    //solo
                     botonPosponer.SetActive(true);
                 }
                 else if (StatsScript.day == 3)
@@ -105,7 +98,7 @@ public class DesicionGame : MonoBehaviour
                     }
                 }
                 break;
-            case "Ida Bus":
+            case "Ida b us":
                 if (StatsScript.day == 2)
                 {
                     botonEscucharMusica.SetActive(true);
@@ -120,11 +113,7 @@ public class DesicionGame : MonoBehaviour
                 else if (StatsScript.day == 4)
                 {
                     botonDormirTodoCamino.SetActive(true);
-                    if (hasConocidoJoshua && hasHabladoJoshuaBus && hasEscritoJoshua)
-                    {
-                        //final Bueno
-                        botonSalirConJoshua.SetActive(true);
-                    }
+                    //pensarvida
                     botonPensarVida.SetActive(true);
                 }
             break;
@@ -137,7 +126,7 @@ public class DesicionGame : MonoBehaviour
                 }
                 else if (StatsScript.day == 3)
                 {
-                    if (hasDormiidoClase1 == false)
+                    if (hasDormidoClase1 == false)
                     {
                         botonParticiparClaseDia3.SetActive(true);
                     }                    
@@ -174,6 +163,7 @@ public class DesicionGame : MonoBehaviour
                 {
                     if (hasConocidoJoshua && hasHabladoJoshuaBus && hasEscritoJoshua)
                     {
+                        //true
                         botonSalirConJoshua.SetActive(true);
                     }
                     botonDormirTodoCamino.SetActive(true);
@@ -199,66 +189,72 @@ public class DesicionGame : MonoBehaviour
                 }
             break;
         }
+        
+       
 
        
-    }          
-    void SubirSalud(int suma)
+    }
+    public void addScene()
+    {
+        if (StatsScript.scene < 5)
+        {
+            StatsScript.scene += 1;
+        }
+        else
+        {
+            StatsScript.scene = 1;
+        }
+    }
+    public void SubirSalud(int suma)
     {
         StatsScript.felicidad += suma;
     }
-    void BajarSalud(int resta)
+    public void ChangeDay()
+    {
+        StatsScript.day++;
+    }    
+    public void BajarSalud(int resta)
     {
         StatsScript.felicidad -= resta;
     }
-    void UsarBoton (GameObject boton,GameObject boton2, GameObject boton3, GameObject boton4)
+    public void UsarBoton (GameObject boton)
     {
         if (boton != null)
         {
             boton.SetActive(false);
         }
-        if (boton2 != null)
-        {
-            boton2.SetActive(false);
-        }
-        if (boton3 != null)
-        {
-            boton3.SetActive(false);
-        }
-        if (boton4 != null)
-        {
-            boton4.SetActive(false);
-        }        
+        gameObject.SetActive(false);
     }
-    void ChageScene(string NuevaEscena)
+    public void ChageScene(string NuevaEscena)
     {
         escena = NuevaEscena;
         TomarDecision(escena);
     }
-    void BotonDormirClase1()
+    public void BotonDormirClase1()
     {
-        hasDormiidoClase1 = true;
+        hasDormidoClase1 = true;
     }
-    void BotonHablarJoshua()
+    public void BotonHablarJoshua()
     {
         hasHabladoJoshuaBus = true;
     }
-    void BotonConocerJoshua()
+    public void BotonConocerJoshua()
     {
         hasConocidoJoshua = true;
     }
-    void BotonEscribirJoshua()
+    public void BotonEscribirJoshua()
     {
         hasEscritoJoshua = true;
     }
-    void DibujoHecho()
+    public void DibujoHecho()
     {
         dibujoHecho = true;
     }
-    void BotonFinalJoshua(Scene scene)
+    public void BotonCambiarEscenaGrande(string scene)
     {
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(scene);
     }
-    void BotonFinal(Scene finalMalo, Scene FinalBueno)
+    public void BotonFinal(Scene finalMalo)
     {
         if (StatsScript.felicidad <= 49)
         {
@@ -266,7 +262,20 @@ public class DesicionGame : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(FinalBueno.name);
+            //agregar Scena final bueno
+        }        
+    }
+
+    public void PreguntaRandom()
+    {
+        int ram = Random.Range(0, 11);
+        if (ram <= 4)
+        {
+            StatsScript.felicidad += 5;
+        }
+        else
+        {
+            StatsScript.felicidad -= 5;
         }
     }
 }

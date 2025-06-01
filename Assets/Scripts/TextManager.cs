@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 
 public class TextManager : MonoBehaviour
-{
-    private StatsScript statsScript;
+{    
     [SerializeField] private List<DialogueDay> DialoguesPerDay;
     [SerializeField] TextMeshProUGUI textMeshProUGUI;
     [SerializeField] TextMeshProUGUI textDay;
@@ -14,11 +13,10 @@ public class TextManager : MonoBehaviour
     private Coroutine currentCoroutine;
 
     void Start()
-    {
-        statsScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<StatsScript>();
-        ShowCurrentDialog();
-        ChangeDay();
+    {        
+        ShowCurrentDialog();        
     }
+    //boton que haga lo de abajo
     public void ChangeText()
     {
         if (textFinished == true)
@@ -35,13 +33,13 @@ public class TextManager : MonoBehaviour
 
             if (nextScene != null)
             {
-                StatsScript.scene++;
+                //StatsScript.scene++;
                 StartTyping(nextScene.text);
             }
             else
             {
-                StatsScript.day++;
-                StatsScript.scene = 1;
+                //StatsScript.day++;
+                //StatsScript.scene = 1;
                 ChangeDay();
 
                 currentDay = DialoguesPerDay.Find(d => d.dia == StatsScript.day);
