@@ -1,5 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Unity.Collections;
+using UnityEngine.Events;
 
 public class SpawnerNotas : MonoBehaviour
 {
@@ -25,6 +28,9 @@ public class SpawnerNotas : MonoBehaviour
 
     [SerializeField] private bool maxxed = false;
     [SerializeField] private bool results;
+
+    [SerializeField] private UnityEvent nombreee;
+    [SerializeField] private float timetofade;
     private void Update()
     {
         timer += Time.deltaTime;
@@ -100,6 +106,7 @@ public class SpawnerNotas : MonoBehaviour
             }
 
 
+            nombreee.Invoke();
 
         }
         
