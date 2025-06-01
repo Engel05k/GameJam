@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DesicionGame : MonoBehaviour
 {
     public Text diaTexto;
     public Text energiaTexto;
     public Text felicidadTexto;
+
+    private Scene scene;
+    [SerializeField] string escena;
+    [SerializeField] int Dia;
 
     [SerializeField] Image Alarma;
     [SerializeField] Image BusSolo;
@@ -29,8 +34,7 @@ public class DesicionGame : MonoBehaviour
     [SerializeField] private GameObject botonDormirClaseDia2;
     [SerializeField] private GameObject botonTriviaOpcion1Dia2;
     [SerializeField] private GameObject botonTriviaOpcion2Dia2;
-    [Header("Regreso Bus")]
-    [SerializeField] private GameObject botonRegresoMirarVentana;
+    [Header("Regreso Bus")]    
     [SerializeField] private GameObject botonRegresoEscucharMusica;
     [SerializeField] private GameObject botonRedesSociales;
     [Header("Casa")]
@@ -68,13 +72,10 @@ public class DesicionGame : MonoBehaviour
      
 
 
-    private bool dibujoHecho = false;
-    private bool mirarPorVentana = false;
-    private bool hasDormiidoClase1 = false;  
-    private bool hasDormiidoClase2 = false;  
+    private bool dibujoHecho = false;   
+    private bool hasDormiidoClase1 = false;      
     private bool hasConocidoJoshua = false;
-    private bool hasHabladoJoshua = false;
-    private bool hasEscritoDiario = false;
+    private bool hasHabladoJoshua = false;    
 
     StatsScript estado;
     // para q puedan elegirlo en el UI tienen que ir al boton luego onclick luego agregar este script y
@@ -86,19 +87,38 @@ public class DesicionGame : MonoBehaviour
 
     }
 
-    public void TomarDecision(string decision)
+    public void TomarDecision(string Escena)
     {
-        switch (decision)
+        switch (Escena)
         {
             case "Alarma":
-                if (estado.day == 1)
+                if (estado.day == 2)
                 {
                     botonLevantarse.SetActive(true);
+                    botonposponerdia2.SetActive(true);
                 }
-                
-                break;
-            case "en clase":
-                TomarDecisionClase("estudiar");
+                else if (estado.day == 3)
+                {
+                    botonRevisarCelular.SetActive(true);
+                    botonLevantarse.SetActive(true);
+                }
+                else if (estado.day == 4)
+                {
+                    botonRevisarCelular.SetActive(true);
+                    botonLevantarse.SetActive(true);
+                    if (hasConocidoJoshua && hasHabladoJoshua)
+                    {
+                        botonEscribirleJoshua.SetActive(true);
+                    }
+                }
+                    break;
+            case "En clase":
+                if (estado.day == 2)
+                {
+                    botonDibujarDia2.SetActive(true);
+                    botonDormirClaseDia2.SetActive(true);
+                    botonParticiparClaseDia2.SetActive(true);
+                }
                 break;
             case "Regresar":
                
@@ -113,10 +133,10 @@ public class DesicionGame : MonoBehaviour
         SiguienteDia();
     }
 
-    public void TomarDecisionClase(string decision)  // y asi pueden separarlo, pero tengan uno global y luego vayan 
+    public void TomarDecisionClase(string Escena)  // y asi pueden separarlo, pero tengan uno global y luego vayan 
     // cambiando de escena jugando con la camara y ns cuando elija estudiar q ahora salgan otros botones q le aparezcan estudiar dormir o socializar
     {
-        switch (decision)
+        switch (Escena)
         {
             case "estudiar":
               
@@ -171,5 +191,60 @@ public class DesicionGame : MonoBehaviour
     void BajarSalud(int resta)
     {
         estado.felicidad -= resta;
+    }
+    void UsarBoton (GameObject boton,GameObject boton2, GameObject boton3, GameObject boton4)
+    {
+        if (boton != null)
+        {
+            boton.SetActive(false);
+        }
+        if (boton2 != null)
+        {
+            boton2.SetActive(false);
+        }
+        if (boton3 != null)
+        {
+            boton3.SetActive(false);
+        }
+        if (boton4 != null)
+        {
+            boton4.SetActive(false);
+        }        
+    }
+    void ChageScene(string NuevaEscena)
+    {
+        escena = NuevaEscena;
+        TomarDecision(escena);
+    }
+    void BotonDormirClase1()
+    {
+        hasDormiidoClase1 = true;
+    }
+    void BotonHablarJoshua()
+    {
+        hasHabladoJoshua = true;
+    }
+    void BotonConocerJoshua()
+    {
+        hasConocidoJoshua = true;
+    }
+    void DibujoHecho()
+    {
+        dibujoHecho = true;
+    }
+    void BotonFinalJoshua(Scene scene)
+    {
+        SceneManager.LoadScene(scene.name);
+    }
+    void BotonFinal(Scene finalMalo, Scene FinalBueno)
+    {
+        if (estado.felicidad <= 49)
+        {
+            SceneManager.LoadScene(finalMalo.name);
+        }
+        else
+        {
+            SceneManager.LoadScene(FinalBueno.name);
+        }
     }
 }
