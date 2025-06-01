@@ -64,11 +64,32 @@ public class DesicionGame : MonoBehaviour
     static private bool hasDormidoClase1 = false;      
     static bool hasConocidoJoshua = false;
     static private bool hasHabladoJoshuaBus = false;  
-    static private bool hasEscritoJoshua = false;      
+    static private bool hasEscritoJoshua = false;
+
+    bool hola = false;
+    [SerializeField] int escenaver;
+    [SerializeField] int diaver;
     
     void Start()
     {
         TomarDecision(escena);
+    }
+    private void FixedUpdate()
+    {
+        if (StatsScript.day == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                addScene();                
+            }
+        }
+        escenaver = StatsScript.scene;
+        diaver = StatsScript.day;
+        if (StatsScript.day == 2 && hola == false)
+        {
+            TomarDecision(escena);
+            hola = true;
+        }
     }
 
     public void TomarDecision(string Escena)
@@ -202,6 +223,7 @@ public class DesicionGame : MonoBehaviour
         }
         else
         {
+            StatsScript.day++;
             StatsScript.scene = 1;
         }
     }
@@ -211,7 +233,7 @@ public class DesicionGame : MonoBehaviour
     }
     public void ChangeDay()
     {
-        StatsScript.day++;
+        //StatsScript.day++;
     }    
     public void BajarSalud(int resta)
     {
@@ -223,7 +245,7 @@ public class DesicionGame : MonoBehaviour
         {
             boton.SetActive(false);
         }
-        gameObject.SetActive(false);
+        TomarDecision(escena);
     }
     public void ChageScene(string NuevaEscena)
     {
@@ -252,18 +274,21 @@ public class DesicionGame : MonoBehaviour
     }
     public void BotonCambiarEscenaGrande(string scene)
     {
-        SceneManager.LoadScene(scene);
-    }
+        SceneManager.LoadScene(scene);    }
+    
     public void BotonFinal(Scene finalMalo)
     {
-        if (StatsScript.felicidad <= 49)
+        if (StatsScript.day == 4)
         {
-            SceneManager.LoadScene(finalMalo.name);
-        }
-        else
-        {
-            //agregar Scena final bueno
-        }        
+            if (StatsScript.felicidad <= 49)
+            {
+                SceneManager.LoadScene(finalMalo.name);
+            }
+            else
+            {
+                //agregar Scena final bueno
+            }
+        }               
     }
 
     public void PreguntaRandom()

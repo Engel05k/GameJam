@@ -5028,7 +5028,7 @@ GameObject:
   - component: {fileID: 832281709}
   - component: {fileID: 832281708}
   m_Layer: 5
-  m_Name: Button - Salir con Joshua
+  m_Name: Button - Salir con Joshua listo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5664,7 +5664,7 @@ MonoBehaviour:
   textMeshProUGUI: {fileID: 815369922}
   textDay: {fileID: 154713292}
   typingSpeed: 0.05
-  textFinished: 0
+  textFinished: 1
 --- !u!4 &1025697841
 Transform:
   m_ObjectHideFlags: 0
@@ -8452,7 +8452,7 @@ GameObject:
   - component: {fileID: 1833043757}
   - component: {fileID: 1833043756}
   m_Layer: 5
-  m_Name: Button - Posponer Alarma
+  m_Name: Button - Posponer Alarma listo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9644,7 +9644,7 @@ GameObject:
   - component: {fileID: 2004115287}
   - component: {fileID: 2004115286}
   m_Layer: 5
-  m_Name: Button - Reflexionar
+  m_Name: Button - Reflexionar listo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10354,7 +10354,7 @@ GameObject:
   - component: {fileID: 2065058810}
   - component: {fileID: 2065058809}
   m_Layer: 5
-  m_Name: Button - Levantarse
+  m_Name: Button - Levantarse listo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10559,7 +10559,7 @@ GameObject:
   - component: {fileID: 2117278368}
   - component: {fileID: 2117278367}
   m_Layer: 5
-  m_Name: Button - Escuchar Musica
+  m_Name: Button - Escuchar Musica listo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
