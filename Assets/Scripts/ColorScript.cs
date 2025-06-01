@@ -9,6 +9,7 @@ public class ColorScript : MonoBehaviour
     [SerializeField] private List<Color> colorList;
     [SerializeField] private SpriteRenderer panelImage;   
     private int colorNumber;
+    [SerializeField] private float holaa;
     [SerializeField] bool pressedButton;
     StatsScript stats;
     void Start()
@@ -19,35 +20,36 @@ public class ColorScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        holaa = StatsScript.felicidad;
         if (pressedButton)
         {
             if (Input.GetKeyDown(KeyCode.P))
             {
-                ChangeColor();
+                
             }
-        }        
+        }
+        ChangeColor();
     }
     
     void ChangeColor()
     {
         if (!pressedButton)
         {
-            if (stats.TotalHealth() > 80)
+            if (StatsScript.felicidad > 80)
             {
                 panelImage.color = colorList[0];                
             }
-            else if (stats.TotalHealth() > 60)
+            else if (StatsScript.felicidad > 60)
             {
                 panelImage.color = colorList[1];
             }
-            else if (stats.TotalHealth() > 40)
+            else if (StatsScript.felicidad > 40)
             {
                 panelImage.color = colorList[2];
             }
-            else if (stats.TotalHealth() > 20)
+            else if (StatsScript.felicidad > 20)
             {
                 panelImage.color = colorList[3];
             }

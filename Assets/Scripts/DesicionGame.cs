@@ -68,7 +68,9 @@ public class DesicionGame : MonoBehaviour
 
     [SerializeField] private string scenadibujo;
     [SerializeField] private string scenamusica;
-    [SerializeField] private string scenafinal;
+    [SerializeField] private string scenafinalbueno;
+    [SerializeField] private string scenafinalmalo;
+    [SerializeField] private string scenafinalneutro;
 
 
 
@@ -85,6 +87,8 @@ public class DesicionGame : MonoBehaviour
 
     void Start()
     {
+        StatsScript.scene = 1;
+        StatsScript.felicidad = 50;
         TomarDecision(escena);
     }
     private void Update()
@@ -99,12 +103,29 @@ public class DesicionGame : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            SceneManager.LoadScene(scenafinal);
+            SceneManager.LoadScene(scenafinalmalo);
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
             SceneManager.LoadScene(scenadibujo);
         }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SceneManager.LoadScene(scenafinalmalo);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SceneManager.LoadScene(scenafinalneutro);
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            StatsScript.felicidad += 10;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            StatsScript.felicidad -= 10;
+        }
+            
         
         
         escenaver = StatsScript.scene;
