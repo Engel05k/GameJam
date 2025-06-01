@@ -2,26 +2,16 @@ using UnityEngine;
 
 public class StatsScript : MonoBehaviour
 {
-    public float mentalHealth = 50;
-    public float selfConfidence = 50;
-    public float socialSkills = 50;
+    public int felicidad = 50;   
     public int day = 1;
     public int scene = 1;
 
-    public void ChangeConfidence(float change)
+    public void ChangeConfidence(int change)
     {
-        selfConfidence += change;
-    }
-    public void ChangesocialSkills(float change)
+        felicidad += change;
+    }    
+    public int TotalHealth()
     {
-        socialSkills += change;
-    }
-    public void ChangeHealth(float change)
-    {
-        mentalHealth += change;
-    }
-    public float TotalHealth()
-    {
-        return Mathf.FloorToInt((mentalHealth + selfConfidence + socialSkills) / 3f);
+        return felicidad;  
     }
 }
