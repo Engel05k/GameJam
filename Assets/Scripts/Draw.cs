@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Draw : MonoBehaviour
 {
     Coroutine drawing;
+    [SerializeField] private Rect drawBounds = new Rect(-5f, -3f, 10f, 6f);
 
     void Update()
     {
@@ -39,7 +41,7 @@ public class Draw : MonoBehaviour
 
     IEnumerator DrawLine()
     {
-        GameObject newGameObject = Instantiate(Resources.Load("Line") as GameObject, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject newGameObject = Instantiate(Resources.Load("Line") as GameObject, Vector3.zero, Quaternion.identity);
         LineRenderer line = newGameObject.GetComponent<LineRenderer>();
         line.positionCount = 0;
 
@@ -47,9 +49,23 @@ public class Draw : MonoBehaviour
         {
             Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             position.z = 0;
-            line.positionCount++;
-            line.SetPosition(line.positionCount - 1, position);
+
+            if (drawBounds.Contains(position))
+            {
+                line.positionCount++;
+                line.SetPosition(line.positionCount - 1, position);
+            }
+
             yield return null;
         }
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Vector3 center = new Vector3(drawBounds.x + drawBounds.width / 2, drawBounds.y + drawBounds.height / 2, 0);
+        Vector3 size = new Vector3(drawBounds.width, drawBounds.height, 0);
+        Gizmos.DrawWireCube(center, size);
     }
 }
