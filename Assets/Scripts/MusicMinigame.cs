@@ -19,6 +19,11 @@ public class MusicMinigame : MonoBehaviour
     private List<int> sequence = new List<int>();
     [SerializeField] private int maxAmountKeys = 5;
 
+
+    [SerializeField] private float notesTouched = 0;
+    [SerializeField] private float notesMissed = 0;
+
+
     private LogicaNotas[] notasPantalla;
 
     private void Start()
@@ -58,11 +63,11 @@ public class MusicMinigame : MonoBehaviour
 
     private void PlayNote(int note)
     {
-        if (note < 0 || note >= sounds.Length) 
+        if (note < 0 || note >= sounds.Length)
         {
             return;
         }
-    
+
         audioSource.PlayOneShot(sounds[note]);
         sequence.Add(note);
     }
@@ -99,11 +104,17 @@ public class MusicMinigame : MonoBehaviour
             if (nota.adentro && nota.notaID == idNota)
             {
                 Debug.Log("Nota Acertada");
+                notesTouched++;
                 Destroy(nota.gameObject);
                 return;
             }
+            else if (!nota.adentro && nota.notaID == idNota)
+            {
+                notesMissed++;
+            }
         }
         Debug.Log("Fallaste nota");
+
     }
 
     private bool CheckSequence(List<int> sequenceToCheck)
@@ -121,6 +132,16 @@ public class MusicMinigame : MonoBehaviour
         }
         return true;
     }
+
+    public float notestouched
+    {
+        get { return notesTouched; } 
+    
+    }
+
+
+    public float notesmisseds
+        { get { return notesMissed; } }
 
 }
 
