@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3549757037853599367}
   - component: {fileID: 3510484681311537934}
   - component: {fileID: -8820577767526466480}
+  - component: {fileID: 1661040586852002527}
   m_Layer: 0
   m_Name: Nota-2
   m_TagString: Untagged
@@ -78,12 +79,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1948283e3d3bb0b43ad74c8bf2f9d3ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d65476e066f604143a2d4d4afc5f1c75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.33, y: 2.63}
+  m_Size: {x: 8.25, y: 9.88}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d851c57af623c84f838510021882b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 1.5
+  velocidad: 2
   notaID: 1
   adentro: 0
 --- !u!61 &-8820577767526466480
@@ -138,15 +139,42 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.08818406, y: -0.08417553}
+  m_Offset: {x: 0.14830989, y: -0.04409188}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.33, y: 2.63}
-    newSize: {x: 2.33, y: 2.63}
+    oldSize: {x: 2.75, y: 3.2933333}
+    newSize: {x: 8.25, y: 9.88}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.79078686, y: 1.7882425}
+  m_Size: {x: 1.7608119, y: 3.0548868}
   m_EdgeRadius: 0
+--- !u!50 &1661040586852002527
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948834091938761611}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

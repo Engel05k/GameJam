@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ab20f8c4b3ce7504d8f141d10f7753be
+guid: d65476e066f604143a2d4d4afc5f1c75
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4300939479128014341
-    second: Nota-1_0
+      213: -8969118164455729018
+    second: nota_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nota-1_0
+      name: nota_2_0
       rect:
         serializedVersion: 2
-        x: 73
-        y: 27
-        width: 103
-        height: 194
+        x: 208
+        y: 49
+        width: 493
+        height: 867
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bf10f12c45eff44c0800000000000000
-      internalID: -4300939479128014341
+      spriteID: 688dc13cc8a478380800000000000000
+      internalID: -8969118164455729018
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Nota-1_0: -4300939479128014341
+      nota_2_0: -8969118164455729018
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
