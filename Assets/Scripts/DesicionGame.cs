@@ -1,0 +1,170 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class DesicionGame : MonoBehaviour
+{
+    public Text diaTexto;
+    public Text energiaTexto;
+    public Text felicidadTexto;
+
+    [Header("Día 2")]
+    [Header("Alarma")]
+    [SerializeField] private GameObject botonLevantarse;
+    [SerializeField] private GameObject botonposponerdia2;
+    [Header("Ida Bus")]
+    [SerializeField] private GameObject botonEscucharMusica;
+    [SerializeField] private GameObject botonIdaMirarVentana;
+    [SerializeField] private GameObject botonDormir;
+    [Header("En clase")]
+    [SerializeField] private GameObject botonDibujarDia2;
+    [SerializeField] private GameObject botonParticiparClaseDia2;
+    [SerializeField] private GameObject botonDormirClaseDia2;
+    [SerializeField] private GameObject botonTriviaOpcion1Dia2;
+    [SerializeField] private GameObject botonTriviaOpcion2Dia2;
+    [Header("Regreso Bus")]
+    [SerializeField] private GameObject botonRegresoMirarVentana;
+    [SerializeField] private GameObject botonRegresoEscucharMusica;
+    [SerializeField] private GameObject botonRedesSociales;
+    [Header("Casa")]
+    [SerializeField] private GameObject botonEscribirDiario;
+    [SerializeField] private GameObject botonIgnorarDiario;
+    [Header("Día 3")]
+    [Header("Alarma")]
+    [SerializeField] private GameObject botonLevantarsedia3;
+    [SerializeField] private GameObject botonRevisarCelular;
+    [Header("Ida Bus")]
+    [SerializeField] private GameObject botonSaludar;
+    [SerializeField] private GameObject botonHacerteElDormido;
+    [Header("En clase")]
+    [SerializeField] private GameObject botonDibujarDia3;
+    [SerializeField] private GameObject botonAtenderClase;
+    [SerializeField] private GameObject botonDormirClaseDia3;
+    [SerializeField] private GameObject botonParticiparClaseDia3;
+    [SerializeField] private GameObject botonTriviaOpcion1Dia3;
+    [SerializeField] private GameObject botonTriviaOpcion2Dia3;
+    [Header("Regreso Bus")]
+    [SerializeField] private GameObject botonEscribirJeremy;
+    [SerializeField] private GameObject botonDormirEsuchandoMusica;
+    [SerializeField] private GameObject botonPensarVida;
+    [Header("Casa")]
+    [SerializeField] private GameObject botonEscribirDelDia;
+    [SerializeField] private GameObject botonIrseADormir;
+    [Header("Día 4")]
+    [Header("alarma")]
+    [SerializeField] private GameObject botonEscribirleJoshua; 
+    [SerializeField] private GameObject botonLevantarseDia4;
+    [SerializeField] private GameObject botonAplazarAlarma;
+    [Header("Ida Bus")]
+    [SerializeField] private GameObject botonLeerDocumentosDia4;
+    [SerializeField] private GameObject botonDormirDia4;
+    [SerializeField] private GameObject botonHablarConJoshua;
+    [Header("En clase")]
+    [SerializeField] private GameObject botonParticipar;
+    [SerializeField] private GameObject botonSalirteDeLaClase;
+    [Header("Regreso Bus")]
+    [SerializeField] private GameObject botonSalirConJoshua;
+    [SerializeField] private GameObject botonDormirTodoCamino;
+    [SerializeField] private GameObject botonEscucharMusicaDia4;
+    [Header("Casa")]
+    [SerializeField] private GameObject botonIgnorarDiarioDia4;
+    [SerializeField] private GameObject botonEscribirDiarioDia4;
+
+
+    private bool dibujoHecho;
+    private bool mirarPorVentana;
+    private bool hasDormiidoClase1;
+    private bool hasPrestadoAtencionAlgunaClase;
+    private bool hasConocidoJoshua;
+    private bool hasHabladoJoshua;
+    private bool hasEscritoDiario;
+
+    StatsScript estado;
+    // para q puedan elegirlo en el UI tienen que ir al boton luego onclick luego agregar este script y
+    // luego elegir la funcion TomarDecision y luego escribir el nombre de la decision que quieren tomar
+    // y asi pueden hacer un boton para cada decision, por ejemplo: viajar bus, en clase, pelicula, etc
+    void Start()
+    {
+        MostrarEstado();
+    }
+
+    public void TomarDecision(string decision)
+    {
+        switch (decision)
+        {
+            case "Alarma":
+                if (estado.day == 1)
+                {
+
+                }
+                estado.energia -= 10;
+                estado.felicidad -= 5;
+                break;
+            case "en clase":
+                TomarDecisionClase("estudiar");
+                break;
+            case "Regresar":
+                estado.energia -= 10;
+                estado.felicidad += 15;
+                break;
+            case "Dormir":
+                estado.energia += 10;
+                estado.felicidad += 15;
+                break;
+        }
+
+        SiguienteDia();
+    }
+
+    public void TomarDecisionClase(string decision)  // y asi pueden separarlo, pero tengan uno global y luego vayan 
+    // cambiando de escena jugando con la camara y ns cuando elija estudiar q ahora salgan otros botones q le aparezcan estudiar dormir o socializar
+    {
+        switch (decision)
+        {
+            case "estudiar":
+                estado.energia -= 15;
+                estado.felicidad -= 10;
+                break;
+            case "dormir":
+                estado.energia += 20;
+                break;
+            case "socializar":
+                estado.energia -= 5;
+                estado.felicidad += 10;
+                break;
+        }
+        SiguienteDia();
+    }
+
+    void SiguienteDia()
+    {
+        estado.day++;
+        MostrarEstado();
+    }
+
+    void MiniGame()
+    {
+        // Aquí iría su juego q ns esta en level 2
+        // ns hare cualquier wea como minijuego xd
+        int resultado = Random.Range(0, 2); // 0 o 1
+        if (resultado == 1)
+        {
+            estado.felicidad += 10;
+        }
+        else
+        {
+            estado.felicidad -= 5;
+        }
+
+        SiguienteDia();
+    }
+
+    void MostrarEstado()
+    {
+        // esto mostrar los textos de la UI con el estado del juego, vi q querian al final poner como se sentia, podrian ponerlo al final tmbn lo puse al q termine el dia
+        // y asi pueden agregar mas cosas al estado del juego, como esperanza, autocuidado, etc. depende q lo usen y todo eso.
+        /*diaTexto.text = "Día: " + estado.day;
+        energiaTexto.text = "Energía: " + estado.energia;
+        felicidadTexto.text = "Felicidad: " + estado.felicidad;*/
+    }
+}
