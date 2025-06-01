@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LogicaNotas : MonoBehaviour
 {
-    public float velocidad = 1.5f;
+    public float velocidad = 2f;
     public int notaID;
     public bool adentro = false;
     void Update()
