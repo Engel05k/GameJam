@@ -14,12 +14,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Alarma.unity
     guid: 4519450caba63f543afd07cbf6adb416
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScreen.unity
     guid: a74bb3408d0601b479624ee58f7ec71f
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 48e19de7b0c646245b7e684f618f984f
+  - enabled: 1
+    path: Assets/Scenes/Minigame - Drawing.unity
+    guid: 8ffcd9029a5ae2e4dbbcdbf0cc2049e0
+  - enabled: 1
+    path: Assets/Scenes/MusicMinigameTest.unity
+    guid: 03bc7085e32660543b6ccedf6cd1b357
   - enabled: 1
     path: Assets/Scenes/Creditos.unity
     guid: 80b4de33f7889f34c96a59f12e2da17e
