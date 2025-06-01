@@ -21,6 +21,8 @@ public class MusicMinigame : MonoBehaviour
     private List<int> sequence = new List<int>();
     [SerializeField] private int maxAmountKeys = 5;
 
+    private LogicaNotas[] notasPantalla;
+
     private void Start()
     {
 
@@ -30,27 +32,25 @@ public class MusicMinigame : MonoBehaviour
 
     private void Update()
     {
+        notasPantalla = FindObjectsOfType<LogicaNotas>();
+
         if (Input.GetKeyDown(key0))
         {
-            Debug.Log("Key 0 pressed");
             PlayNote(0);
             CheckNote();
         }
         if (Input.GetKeyDown(key1))
         {
-            Debug.Log("Key 1 pressed");
             PlayNote(1);
             CheckNote();
         }
         if (Input.GetKeyDown(key2))
         {
-            Debug.Log("Key 2 pressed");
             PlayNote(2);
             CheckNote();
         }
         if (Input.GetKeyDown(key3))
         {
-            Debug.Log("Key 3 pressed");
             PlayNote(3);
             CheckNote();
         }
@@ -89,6 +89,17 @@ public class MusicMinigame : MonoBehaviour
             }
         }
 
+    }
+    private void CheckPresion(int idNota)
+    {
+        foreach(var nota in notasPantalla)
+        {
+            Debug.Log("Nota Acertada");
+            PlayNote(idNota);
+            Destroy(nota.gameObject);
+            return;
+        }
+        Debug.Log("Fallaste nota");
     }
 
     private bool CheckSequence(List<int> sequenceToCheck)
