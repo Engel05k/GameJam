@@ -23,7 +23,7 @@ public class DesicionGame : MonoBehaviour
     [Header("Día 2")]
     [Header("Alarma")]
     [SerializeField] private GameObject botonLevantarse;
-    [SerializeField] private GameObject botonposponerdia2;
+    [SerializeField] private GameObject botonPosponer;
     [Header("Ida Bus")]
     [SerializeField] private GameObject botonEscucharMusica;
     [SerializeField] private GameObject botonIdaMirarVentana;
@@ -31,9 +31,7 @@ public class DesicionGame : MonoBehaviour
     [Header("En clase")]
     [SerializeField] private GameObject botonDibujarDia2;
     [SerializeField] private GameObject botonParticiparClaseDia2;
-    [SerializeField] private GameObject botonDormirClaseDia2;
-    [SerializeField] private GameObject botonTriviaOpcion1Dia2;
-    [SerializeField] private GameObject botonTriviaOpcion2Dia2;
+    [SerializeField] private GameObject botonDormirClaseDia2;   
     [Header("Regreso Bus")]    
     [SerializeField] private GameObject botonRegresoEscucharMusica;
     [SerializeField] private GameObject botonRedesSociales;
@@ -49,9 +47,7 @@ public class DesicionGame : MonoBehaviour
     [Header("En clase")]
     [SerializeField] private GameObject botonPracticarDibujoDia3;
     [SerializeField] private GameObject botonAtenderClase;    
-    [SerializeField] private GameObject botonParticiparClaseDia3;
-    [SerializeField] private GameObject botonTriviaOpcion1Dia3;
-    [SerializeField] private GameObject botonTriviaOpcion2Dia3;
+    [SerializeField] private GameObject botonParticiparClaseDia3;    
     [Header("Regreso Bus")]
     [SerializeField] private GameObject botonEscribirJeremy;    
     [SerializeField] private GameObject botonPensarVida;     
@@ -72,19 +68,15 @@ public class DesicionGame : MonoBehaviour
      
 
 
-    private bool dibujoHecho = false;   
-    private bool hasDormiidoClase1 = false;      
-    private bool hasConocidoJoshua = false;
-    private bool hasHabladoJoshua = false;    
-
-    StatsScript estado;
-    // para q puedan elegirlo en el UI tienen que ir al boton luego onclick luego agregar este script y
-    // luego elegir la funcion TomarDecision y luego escribir el nombre de la decision que quieren tomar
-    // y asi pueden hacer un boton para cada decision, por ejemplo: viajar bus, en clase, pelicula, etc
+    static private bool dibujoHecho = false;   
+    static private bool hasDormiidoClase1 = false;      
+    static bool hasConocidoJoshua = false;
+    static private bool hasHabladoJoshuaBus = false;  
+    static private bool hasEscritoJoshua = false;      
+    
     void Start()
     {
-        MostrarEstado();
-
+        TomarDecision(escena);
     }
 
     public void TomarDecision(string Escena)
@@ -92,105 +84,131 @@ public class DesicionGame : MonoBehaviour
         switch (Escena)
         {
             case "Alarma":
-                if (estado.day == 2)
+                if (StatsScript.day == 2)
                 {
                     botonLevantarse.SetActive(true);
-                    botonposponerdia2.SetActive(true);
+                    botonPosponer.SetActive(true);
                 }
-                else if (estado.day == 3)
+                else if (StatsScript.day == 3)
                 {
                     botonRevisarCelular.SetActive(true);
                     botonLevantarse.SetActive(true);
                 }
-                else if (estado.day == 4)
+                else if (StatsScript.day == 4)
                 {
                     botonRevisarCelular.SetActive(true);
                     botonLevantarse.SetActive(true);
-                    if (hasConocidoJoshua && hasHabladoJoshua)
+                    if (hasConocidoJoshua && hasHabladoJoshuaBus)
                     {
+                        //tercer bool
                         botonEscribirleJoshua.SetActive(true);
                     }
                 }
-                    break;
+                break;
+            case "Ida Bus":
+                if (StatsScript.day == 2)
+                {
+                    botonEscucharMusica.SetActive(true);
+                    botonDormirTodoCamino.SetActive(true);
+                }
+                else if (StatsScript.day == 3)
+                {
+                    botonHacerteElDormido.SetActive(true);
+                    //primer bool
+                    botonSaludarJoshua.SetActive(true);
+                }
+                else if (StatsScript.day == 4)
+                {
+                    botonDormirTodoCamino.SetActive(true);
+                    if (hasConocidoJoshua && hasHabladoJoshuaBus && hasEscritoJoshua)
+                    {
+                        //final Bueno
+                        botonSalirConJoshua.SetActive(true);
+                    }
+                    botonPensarVida.SetActive(true);
+                }
+            break;
             case "En clase":
-                if (estado.day == 2)
+                if (StatsScript.day == 2)
                 {
                     botonDibujarDia2.SetActive(true);
                     botonDormirClaseDia2.SetActive(true);
                     botonParticiparClaseDia2.SetActive(true);
                 }
-                break;
-            case "Regresar":
-               
-                estado.felicidad += 15;
-                break;
-            case "Dormir":
-              
-                estado.felicidad += 15;
-                break;
+                else if (StatsScript.day == 3)
+                {
+                    if (hasDormiidoClase1 == false)
+                    {
+                        botonParticiparClaseDia3.SetActive(true);
+                    }                    
+                    if (dibujoHecho)
+                    {
+                        botonPracticarDibujoDia3.SetActive(true);
+                    }
+                    //neutro
+                    botonAtenderClase.SetActive(true);
+                } 
+                else if (StatsScript.day == 4)
+                {
+                    botonSalirteDeLaClase.SetActive(true);
+                    botonAtenderClase.SetActive(true);                    
+                }
+            break;
+            case "Regresar bus":
+                if (StatsScript.day == 2)
+                {
+                    botonEscucharMusica.SetActive(true);                    
+                    botonDormirTodoCamino.SetActive(true);
+                }
+                else if (StatsScript.day == 3)
+                {
+                    if (hasConocidoJoshua)
+                    {
+                        //segundo bool
+                        botonEscribirleJoshua.SetActive(true);
+                    }
+                    botonDormirTodoCamino.SetActive(true);
+                    botonEscucharMusica.SetActive(true);
+                }
+                else if (StatsScript.day == 4)
+                {
+                    if (hasConocidoJoshua && hasHabladoJoshuaBus && hasEscritoJoshua)
+                    {
+                        botonSalirConJoshua.SetActive(true);
+                    }
+                    botonDormirTodoCamino.SetActive(true);
+                }
+
+
+             break;
+            case "Casa":
+                if (StatsScript.day == 2)
+                {
+                    botonEscribirDiario.SetActive(true);
+                    botonIgnorarDiario.SetActive(true);
+                }
+                else if (StatsScript.day == 3)
+                {
+                   botonIgnorarDiario.SetActive(true) ;
+                   botonEscribirDiario.SetActive(true);
+                }
+                else if (StatsScript.day == 4)
+                {
+                    botonEscribirDiario.SetActive(true);
+                    botonIgnorarDiario.SetActive(true);
+                }
+            break;
         }
 
-        SiguienteDia();
-    }
-
-    public void TomarDecisionClase(string Escena)  // y asi pueden separarlo, pero tengan uno global y luego vayan 
-    // cambiando de escena jugando con la camara y ns cuando elija estudiar q ahora salgan otros botones q le aparezcan estudiar dormir o socializar
-    {
-        switch (Escena)
-        {
-            case "estudiar":
-              
-                estado.felicidad -= 10;
-                break;
-            case "dormir":
-               
-                break;
-            case "socializar":
-                
-                estado.felicidad += 10;
-                break;
-        }
-        SiguienteDia();
-    }
-
-    void SiguienteDia()
-    {
-        estado.day++;
-        MostrarEstado();
-    }
-
-    void MiniGame()
-    {
-        // Aquí iría su juego q ns esta en level 2
-        // ns hare cualquier wea como minijuego xd
-        int resultado = Random.Range(0, 2); // 0 o 1
-        if (resultado == 1)
-        {
-            estado.felicidad += 10;
-        }
-        else
-        {
-            estado.felicidad -= 5;
-        }
-
-        SiguienteDia();
-    }
-
-    void MostrarEstado()
-    {
-        // esto mostrar los textos de la UI con el estado del juego, vi q querian al final poner como se sentia, podrian ponerlo al final tmbn lo puse al q termine el dia
-        // y asi pueden agregar mas cosas al estado del juego, como esperanza, autocuidado, etc. depende q lo usen y todo eso.
-        /*diaTexto.text = "Día: " + estado.day;
-        energiaTexto.text = "Energía: " + estado.energia;
-        felicidadTexto.text = "Felicidad: " + estado.felicidad;*/
-    }
+       
+    }          
     void SubirSalud(int suma)
     {
-        estado.felicidad += suma;
+        StatsScript.felicidad += suma;
     }
     void BajarSalud(int resta)
     {
-        estado.felicidad -= resta;
+        StatsScript.felicidad -= resta;
     }
     void UsarBoton (GameObject boton,GameObject boton2, GameObject boton3, GameObject boton4)
     {
@@ -222,11 +240,15 @@ public class DesicionGame : MonoBehaviour
     }
     void BotonHablarJoshua()
     {
-        hasHabladoJoshua = true;
+        hasHabladoJoshuaBus = true;
     }
     void BotonConocerJoshua()
     {
         hasConocidoJoshua = true;
+    }
+    void BotonEscribirJoshua()
+    {
+        hasEscritoJoshua = true;
     }
     void DibujoHecho()
     {
@@ -238,7 +260,7 @@ public class DesicionGame : MonoBehaviour
     }
     void BotonFinal(Scene finalMalo, Scene FinalBueno)
     {
-        if (estado.felicidad <= 49)
+        if (StatsScript.felicidad <= 49)
         {
             SceneManager.LoadScene(finalMalo.name);
         }

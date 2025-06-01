@@ -24,27 +24,27 @@ public class TextManager : MonoBehaviour
         if (textFinished == true)
         {
             textFinished = false;
-            DialogueDay currentDay = DialoguesPerDay.Find(d => d.dia == statsScript.day);
+            DialogueDay currentDay = DialoguesPerDay.Find(d => d.dia == StatsScript.day);
             if (currentDay == null)
             {
                 Debug.Log("No hay dialogos para este dia");
                 return;
             }
 
-            DialogueScene nextScene = currentDay.scene.Find(s => s.scene == statsScript.scene + 1);
+            DialogueScene nextScene = currentDay.scene.Find(s => s.scene == StatsScript.scene + 1);
 
             if (nextScene != null)
             {
-                statsScript.scene++;
+                StatsScript.scene++;
                 StartTyping(nextScene.text);
             }
             else
             {
-                statsScript.day++;
-                statsScript.scene = 1;
+                StatsScript.day++;
+                StatsScript.scene = 1;
                 ChangeDay();
 
-                currentDay = DialoguesPerDay.Find(d => d.dia == statsScript.day);
+                currentDay = DialoguesPerDay.Find(d => d.dia == StatsScript.day);
                 if (currentDay != null && currentDay.scene.Count > 0)
                 {
                     StartTyping(currentDay.scene[0].text);
@@ -52,7 +52,7 @@ public class TextManager : MonoBehaviour
                 else
                 {
                     StartTyping("No hay mas dialogos");
-                    Debug.LogWarning("No se encontraron dialogos para el dia" + statsScript.day);
+                    Debug.LogWarning("No se encontraron dialogos para el dia" + StatsScript.day);
                 }
             }
         }
@@ -60,14 +60,14 @@ public class TextManager : MonoBehaviour
     }
     private void ShowCurrentDialog()
     {
-        DialogueDay currentDay = DialoguesPerDay.Find(d => d.dia == statsScript.day);
+        DialogueDay currentDay = DialoguesPerDay.Find(d => d.dia == StatsScript.day);
         if (currentDay == null)
         {
-            Debug.LogWarning("No se encontraron dialogos para el dia" + statsScript.day);
+            Debug.LogWarning("No se encontraron dialogos para el dia" + StatsScript.day);
             return;
         }
 
-        DialogueScene currentScene = currentDay.scene.Find(s => s.scene == statsScript.scene);
+        DialogueScene currentScene = currentDay.scene.Find(s => s.scene == StatsScript.scene);
 
         if (currentScene != null)
         {
@@ -102,6 +102,6 @@ public class TextManager : MonoBehaviour
 
     void ChangeDay ()
     {
-        textDay.text = "Día " + statsScript.day;
+        textDay.text = "Día " + StatsScript.day;
     }
 }
