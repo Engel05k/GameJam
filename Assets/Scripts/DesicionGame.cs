@@ -1,12 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class DesicionGame : MonoBehaviour
 {
     public Text diaTexto;
     public Text energiaTexto;
     public Text felicidadTexto;
+
+    [SerializeField] Image Alarma;
+    [SerializeField] Image BusSolo;
+    [SerializeField] Image BusJoshua;
+    [SerializeField] Image clase;
+    [SerializeField] Image regresoBus;
+    [SerializeField] Image salidaFinalJoshua;
+    [SerializeField] Image YaEnCasa;
 
     [Header("Día 2")]
     [Header("Alarma")]
@@ -30,31 +37,23 @@ public class DesicionGame : MonoBehaviour
     [SerializeField] private GameObject botonEscribirDiario;
     [SerializeField] private GameObject botonIgnorarDiario;
     [Header("Día 3")]
-    [Header("Alarma")]
-    [SerializeField] private GameObject botonLevantarsedia3;
+    [Header("Alarma")]    
     [SerializeField] private GameObject botonRevisarCelular;
     [Header("Ida Bus")]
-    [SerializeField] private GameObject botonSaludar;
+    [SerializeField] private GameObject botonSaludarJoshua;
     [SerializeField] private GameObject botonHacerteElDormido;
     [Header("En clase")]
-    [SerializeField] private GameObject botonDibujarDia3;
-    [SerializeField] private GameObject botonAtenderClase;
-    [SerializeField] private GameObject botonDormirClaseDia3;
+    [SerializeField] private GameObject botonPracticarDibujoDia3;
+    [SerializeField] private GameObject botonAtenderClase;    
     [SerializeField] private GameObject botonParticiparClaseDia3;
     [SerializeField] private GameObject botonTriviaOpcion1Dia3;
     [SerializeField] private GameObject botonTriviaOpcion2Dia3;
     [Header("Regreso Bus")]
-    [SerializeField] private GameObject botonEscribirJeremy;
-    [SerializeField] private GameObject botonDormirEsuchandoMusica;
-    [SerializeField] private GameObject botonPensarVida;
-    [Header("Casa")]
-    [SerializeField] private GameObject botonEscribirDelDia;
-    [SerializeField] private GameObject botonIrseADormir;
+    [SerializeField] private GameObject botonEscribirJeremy;    
+    [SerializeField] private GameObject botonPensarVida;     
     [Header("Día 4")]
     [Header("alarma")]
-    [SerializeField] private GameObject botonEscribirleJoshua; 
-    [SerializeField] private GameObject botonLevantarseDia4;
-    [SerializeField] private GameObject botonAplazarAlarma;
+    [SerializeField] private GameObject botonEscribirleJoshua;     
     [Header("Ida Bus")]
     [SerializeField] private GameObject botonLeerDocumentosDia4;
     [SerializeField] private GameObject botonDormirDia4;
@@ -66,18 +65,16 @@ public class DesicionGame : MonoBehaviour
     [SerializeField] private GameObject botonSalirConJoshua;
     [SerializeField] private GameObject botonDormirTodoCamino;
     [SerializeField] private GameObject botonEscucharMusicaDia4;
-    [Header("Casa")]
-    [SerializeField] private GameObject botonIgnorarDiarioDia4;
-    [SerializeField] private GameObject botonEscribirDiarioDia4;
+     
 
 
-    private bool dibujoHecho;
-    private bool mirarPorVentana;
-    private bool hasDormiidoClase1;
-    private bool hasPrestadoAtencionAlgunaClase;
-    private bool hasConocidoJoshua;
-    private bool hasHabladoJoshua;
-    private bool hasEscritoDiario;
+    private bool dibujoHecho = false;
+    private bool mirarPorVentana = false;
+    private bool hasDormiidoClase1 = false;  
+    private bool hasDormiidoClase2 = false;  
+    private bool hasConocidoJoshua = false;
+    private bool hasHabladoJoshua = false;
+    private bool hasEscritoDiario = false;
 
     StatsScript estado;
     // para q puedan elegirlo en el UI tienen que ir al boton luego onclick luego agregar este script y
@@ -86,6 +83,7 @@ public class DesicionGame : MonoBehaviour
     void Start()
     {
         MostrarEstado();
+
     }
 
     public void TomarDecision(string decision)
@@ -95,20 +93,19 @@ public class DesicionGame : MonoBehaviour
             case "Alarma":
                 if (estado.day == 1)
                 {
-
+                    botonLevantarse.SetActive(true);
                 }
-                estado.energia -= 10;
-                estado.felicidad -= 5;
+                
                 break;
             case "en clase":
                 TomarDecisionClase("estudiar");
                 break;
             case "Regresar":
-                estado.energia -= 10;
+               
                 estado.felicidad += 15;
                 break;
             case "Dormir":
-                estado.energia += 10;
+              
                 estado.felicidad += 15;
                 break;
         }
@@ -122,14 +119,14 @@ public class DesicionGame : MonoBehaviour
         switch (decision)
         {
             case "estudiar":
-                estado.energia -= 15;
+              
                 estado.felicidad -= 10;
                 break;
             case "dormir":
-                estado.energia += 20;
+               
                 break;
             case "socializar":
-                estado.energia -= 5;
+                
                 estado.felicidad += 10;
                 break;
         }
@@ -166,5 +163,13 @@ public class DesicionGame : MonoBehaviour
         /*diaTexto.text = "Día: " + estado.day;
         energiaTexto.text = "Energía: " + estado.energia;
         felicidadTexto.text = "Felicidad: " + estado.felicidad;*/
+    }
+    void SubirSalud(int suma)
+    {
+        estado.felicidad += suma;
+    }
+    void BajarSalud(int resta)
+    {
+        estado.felicidad -= resta;
     }
 }
