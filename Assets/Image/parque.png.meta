@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: dd1c39a0e82cfc14ab8d9707054a0eee
+guid: 3902b173e82c2964887e8331d313024e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6567878827696361761
-    second: Comentarios 1_0
-  - first:
-      213: 3332432306816441330
-    second: Comentarios 1_1
+      213: -2194017093396156155
+    second: parque_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 190
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Comentarios 1_0
+      name: parque_0
       rect:
         serializedVersion: 2
-        x: 84
-        y: 982
-        width: 1465
-        height: 601
+        x: 0
+        y: 0
+        width: 3508
+        height: 2480
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 12196a4eefac52b50800000000000000
-      internalID: 6567878827696361761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Comentarios 1_1
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 191
-        width: 1451
-        height: 446
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2fb54dde68d2f3e20800000000000000
-      internalID: 3332432306816441330
+      spriteID: 501bcf4f3194d81e0800000000000000
+      internalID: -2194017093396156155
       vertices: []
       indices: 
       edges: []
@@ -173,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Comentarios 1_0: 6567878827696361761
-      Comentarios 1_1: 3332432306816441330
+      parque_0: -2194017093396156155
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
