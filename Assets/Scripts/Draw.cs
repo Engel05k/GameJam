@@ -39,6 +39,7 @@ public class Draw : MonoBehaviour
     private IEnumerator SetupTextures()
     {
         yield return new WaitForSeconds(1.2f);
+
         if (playerCanvasImage != null)
         {
             playerCanvasImage.gameObject.SetActive(true);
@@ -47,18 +48,22 @@ public class Draw : MonoBehaviour
         {
             referenceCanvasImage.gameObject.SetActive(true);
         }
+
         if (patternTextures != null && patternTextures.Length > 0)
         {
             Texture2D selected = patternTextures[Random.Range(0, patternTextures.Length)];
             originalReferenceTexture = selected;
+
             Texture2D faded = new Texture2D(selected.width, selected.height, TextureFormat.RGBA32, false);
             faded.filterMode = FilterMode.Point;
             Color[] pixels = selected.GetPixels();
-            for (int i = 0; i < pixels.Length; i++) pixels[i].a = 0.2f;
+            for (int i = 0; i < pixels.Length; i++) pixels[i].a = 0.5f;
             faded.SetPixels(pixels);
             faded.Apply();
+
             referenceCanvasImage.texture = faded;
             referenceCanvasImage.gameObject.SetActive(true);
+
             CreateBlankTexture(playerCanvasImage, selected.width, selected.height);
             playerCanvasImage.gameObject.SetActive(true);
         }
@@ -91,19 +96,22 @@ public class Draw : MonoBehaviour
         {
             inputPosition = Input.mousePosition;
         }
+
         Camera cam = Camera.main;
         if (cam == null || playerCanvasImage == null)
         {
             return;
         }
+
         RectTransform rect = playerCanvasImage.rectTransform;
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, cam, out Vector2 localPoint))
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, inputPosition, cam, out Vector2 localPoint))
         {
             Vector2 size = rect.rect.size;
             Vector2 normalizedPoint = new Vector2(
                 (localPoint.x + size.x * 0.5f) / size.x,
                 (localPoint.y + size.y * 0.5f) / size.y
             );
+
             int x = Mathf.RoundToInt(normalizedPoint.x * playerTexture.width);
             int y = Mathf.RoundToInt(normalizedPoint.y * playerTexture.height);
             DrawAt(x, y);
@@ -139,6 +147,7 @@ public class Draw : MonoBehaviour
         newTexture.SetPixels(fillColor);
         newTexture.Apply();
         rawImage.texture = newTexture;
+
         if (rawImage == playerCanvasImage)
         {
             playerTexture = newTexture;
@@ -166,29 +175,37 @@ public class Draw : MonoBehaviour
         {
             return;
         }
+
         if (playerTexture.width != originalReferenceTexture.width || playerTexture.height != originalReferenceTexture.height)
         {
             return;
         }
+
         Color[] playerPixels = playerTexture.GetPixels();
         Color[] referencePixels = originalReferenceTexture.GetPixels();
+
+        int totalRelevantPixels = 0;
         int matchingPixels = 0;
-        int totalPixels = playerPixels.Length;
-        for (int i = 0; i < totalPixels; i++)
+
+        for (int i = 0; i < referencePixels.Length; i++)
         {
-            Color a = playerPixels[i];
-            Color b = referencePixels[i];
-            if (a.a > 0.1f && b.a > 0.1f)
+            if (referencePixels[i].a > 0.1f)
             {
-                float diff = Mathf.Abs(a.r - b.r) + Mathf.Abs(a.g - b.g) + Mathf.Abs(a.b - b.b);
-                if (diff < 0.3f)
+                totalRelevantPixels++;
+
+                if (playerPixels[i].a > 0.1f)
                 {
                     matchingPixels++;
                 }
             }
         }
-        float similarity = (float)matchingPixels / totalPixels * 100f;
+
+        float similarity = totalRelevantPixels > 0
+            ? (float)matchingPixels / totalRelevantPixels * 100f
+            : 0f;
+
         Debug.Log($"Similitud: {similarity:F2}%");
+
         if (resultText != null)
         {
             resultText.text = $"Score: {similarity:F2}%";
