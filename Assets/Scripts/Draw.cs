@@ -1,7 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; // Asegúrate de tener este using
 
 public class Draw : MonoBehaviour
 {
@@ -9,12 +9,13 @@ public class Draw : MonoBehaviour
     [SerializeField] private RawImage playerCanvasImage;
     [SerializeField] private RawImage referenceCanvasImage;
 
-    [Header("Textures")]
-    [SerializeField] private Texture2D[] patternTextures;
+    [Header("Reference Sprites")]
+    [SerializeField] private Sprite[] patternSprites;
 
-    [Header("Draw")]
+    [Header("Draw Settings")]
     [SerializeField] private Color drawColor = Color.black;
     [SerializeField] private int brushSize = 5;
+    [SerializeField] private float brushHardness = 0.8f; // Nuevo: controla lo difuso del pincel
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI resultText;
@@ -22,67 +23,126 @@ public class Draw : MonoBehaviour
     private Texture2D playerTexture;
     private Texture2D originalReferenceTexture;
     private bool isDrawing = false;
+    private Vector2 lastDrawPosition;
 
     private void Start()
     {
-        if (playerCanvasImage != null)
-        {
-            playerCanvasImage.gameObject.SetActive(false);
-        }
-        if (referenceCanvasImage != null)
-        {
-            referenceCanvasImage.gameObject.SetActive(false);
-        }
+        InitializeCanvases();
         StartCoroutine(SetupTextures());
+    }
+
+    private void InitializeCanvases()
+    {
+        playerCanvasImage.gameObject.SetActive(false);
+        referenceCanvasImage.gameObject.SetActive(false);
     }
 
     private IEnumerator SetupTextures()
     {
         yield return new WaitForSeconds(1.2f);
 
-        if (playerCanvasImage != null)
+        if (patternSprites != null && patternSprites.Length > 0)
         {
+            Sprite selectedSprite = patternSprites[Random.Range(0, patternSprites.Length)];
+            SetupReferenceTexture(selectedSprite);
+            SetupPlayerTexture(selectedSprite);
+
             playerCanvasImage.gameObject.SetActive(true);
-        }
-        if (referenceCanvasImage != null)
-        {
             referenceCanvasImage.gameObject.SetActive(true);
         }
+    }
 
-        if (patternTextures != null && patternTextures.Length > 0)
+    private void SetupReferenceTexture(Sprite sprite)
+    {
+        originalReferenceTexture = GetTextureFromSprite(sprite);
+        Texture2D fadedTexture = CreateFadedTextureFromSprite(sprite);
+        referenceCanvasImage.texture = fadedTexture;
+    }
+
+    private void SetupPlayerTexture(Sprite sprite)
+    {
+        CreateBlankTexture(playerCanvasImage, originalReferenceTexture.width, originalReferenceTexture.height);
+        playerCanvasImage.texture = playerTexture;
+    }
+
+    private Texture2D GetTextureFromSprite(Sprite sprite)
+    {
+        if (sprite == null) return null;
+
+        // Crear una nueva textura para evitar problemas con sprites empaquetados
+        Texture2D newTexture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
+        Color[] pixels = sprite.texture.GetPixels(
+            (int)sprite.rect.x,
+            (int)sprite.rect.y,
+            (int)sprite.rect.width,
+            (int)sprite.rect.height);
+
+        newTexture.SetPixels(pixels);
+        newTexture.Apply();
+        return newTexture;
+    }
+
+    private Texture2D CreateFadedTextureFromSprite(Sprite sprite)
+    {
+        Texture2D originalTex = GetTextureFromSprite(sprite);
+        if (originalTex == null) return null;
+
+        Texture2D faded = new Texture2D(originalTex.width, originalTex.height, TextureFormat.RGBA32, false);
+        Color[] pixels = originalTex.GetPixels();
+
+        for (int i = 0; i < pixels.Length; i++)
         {
-            Texture2D selected = patternTextures[Random.Range(0, patternTextures.Length)];
-            originalReferenceTexture = selected;
-
-            Texture2D faded = new Texture2D(selected.width, selected.height, TextureFormat.RGBA32, false);
-            faded.filterMode = FilterMode.Point;
-            Color[] pixels = selected.GetPixels();
-            for (int i = 0; i < pixels.Length; i++) pixels[i].a = 0.5f;
-            faded.SetPixels(pixels);
-            faded.Apply();
-
-            referenceCanvasImage.texture = faded;
-            referenceCanvasImage.gameObject.SetActive(true);
-
-            CreateBlankTexture(playerCanvasImage, selected.width, selected.height);
-            playerCanvasImage.gameObject.SetActive(true);
+            if (pixels[i].a > 0)
+            {
+                pixels[i].a = 0.5f; // Solo reducimos alpha en áreas no transparentes
+            }
         }
+
+        faded.SetPixels(pixels);
+        faded.Apply();
+        return faded;
     }
 
     private void Update()
     {
+        HandleDrawingInput();
+    }
+
+    private void HandleDrawingInput()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             isDrawing = true;
+            lastDrawPosition = GetNormalizedMousePosition();
         }
+
         if (Input.GetMouseButtonUp(0))
         {
             isDrawing = false;
         }
+
         if (isDrawing)
         {
+            Vector2 currentPosition = GetNormalizedMousePosition();
             DrawAtMousePosition();
+            lastDrawPosition = currentPosition;
         }
+    }
+
+    private Vector2 GetNormalizedMousePosition()
+    {
+        if (playerCanvasImage == null || Camera.main == null) return Vector2.zero;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            playerCanvasImage.rectTransform,
+            Input.mousePosition,
+            Camera.main,
+            out Vector2 localPoint);
+
+        Rect rect = playerCanvasImage.rectTransform.rect;
+        return new Vector2(
+            (localPoint.x + rect.width * 0.5f) / rect.width,
+            (localPoint.y + rect.height * 0.5f) / rect.height);
     }
 
     private void DrawAtMousePosition()
@@ -137,34 +197,23 @@ public class Draw : MonoBehaviour
 
     private void CreateBlankTexture(RawImage rawImage, int width, int height)
     {
-        Texture2D newTexture = new Texture2D(width, height, TextureFormat.RGBA32, false);
-        newTexture.filterMode = FilterMode.Point;
+        playerTexture = new Texture2D(width, height, TextureFormat.RGBA32, false)
+        {
+            filterMode = FilterMode.Bilinear,
+            wrapMode = TextureWrapMode.Clamp
+        };
+
         Color[] fillColor = new Color[width * height];
         for (int i = 0; i < fillColor.Length; i++)
         {
             fillColor[i] = Color.clear;
         }
-        newTexture.SetPixels(fillColor);
-        newTexture.Apply();
-        rawImage.texture = newTexture;
 
-        if (rawImage == playerCanvasImage)
-        {
-            playerTexture = newTexture;
-        }
+        playerTexture.SetPixels(fillColor);
+        playerTexture.Apply();
+        rawImage.texture = playerTexture;
     }
 
-    public void HideCanvases()
-    {
-        if (playerCanvasImage != null)
-        {
-            playerCanvasImage.gameObject.SetActive(false);
-        }
-        if (referenceCanvasImage != null)
-        {
-            referenceCanvasImage.gameObject.SetActive(false);
-        }
-    }
 
     public Texture2D GetPlayerTexture() => playerTexture;
     public Texture2D GetReferenceTexture() => originalReferenceTexture;
@@ -178,6 +227,7 @@ public class Draw : MonoBehaviour
 
         if (playerTexture.width != originalReferenceTexture.width || playerTexture.height != originalReferenceTexture.height)
         {
+            Debug.LogError("Las dimensiones de la textura del jugador y la referencia no coinciden.");
             return;
         }
 
@@ -187,13 +237,16 @@ public class Draw : MonoBehaviour
         int totalRelevantPixels = 0;
         int matchingPixels = 0;
 
+        float referenceAlphaThreshold = 0.1f; 
+        float playerAlphaThreshold = 0.1f;
+
         for (int i = 0; i < referencePixels.Length; i++)
         {
-            if (referencePixels[i].a > 0.1f)
+            if (referencePixels[i].a >= referenceAlphaThreshold)
             {
                 totalRelevantPixels++;
 
-                if (playerPixels[i].a > 0.1f)
+                if (playerPixels[i].a >= playerAlphaThreshold)
                 {
                     matchingPixels++;
                 }
@@ -209,6 +262,18 @@ public class Draw : MonoBehaviour
         if (resultText != null)
         {
             resultText.text = $"Score: {similarity:F2}%";
+        }
+    }
+
+    public void HideCanvases()
+    {
+        if (playerCanvasImage != null)
+        {
+            playerCanvasImage.gameObject.SetActive(false);
+        }
+        if (referenceCanvasImage != null)
+        {
+            referenceCanvasImage.gameObject.SetActive(false);
         }
     }
 }
