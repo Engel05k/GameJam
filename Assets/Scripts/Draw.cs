@@ -1,7 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI; // Asegúrate de tener este using
+using UnityEngine.UI;
 
 public class Draw : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class Draw : MonoBehaviour
     [Header("Draw Settings")]
     [SerializeField] private Color drawColor = Color.black;
     [SerializeField] private int brushSize = 5;
-    [SerializeField] private float brushHardness = 0.8f; // Nuevo: controla lo difuso del pincel
+    [SerializeField] private float brushHardness = 0.8f; 
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI resultText;
@@ -68,8 +68,6 @@ public class Draw : MonoBehaviour
     private Texture2D GetTextureFromSprite(Sprite sprite)
     {
         if (sprite == null) return null;
-
-        // Crear una nueva textura para evitar problemas con sprites empaquetados
         Texture2D newTexture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
         Color[] pixels = sprite.texture.GetPixels(
             (int)sprite.rect.x,
@@ -94,7 +92,7 @@ public class Draw : MonoBehaviour
         {
             if (pixels[i].a > 0)
             {
-                pixels[i].a = 0.5f; // Solo reducimos alpha en áreas no transparentes
+                pixels[i].a = 0.5f; //opacidad del 50%
             }
         }
 
@@ -131,18 +129,16 @@ public class Draw : MonoBehaviour
 
     private Vector2 GetNormalizedMousePosition()
     {
-        if (playerCanvasImage == null || Camera.main == null) return Vector2.zero;
-
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             playerCanvasImage.rectTransform,
             Input.mousePosition,
-            Camera.main,
-            out Vector2 localPoint);
+            null,
+            out Vector2 localPos);
 
         Rect rect = playerCanvasImage.rectTransform.rect;
         return new Vector2(
-            (localPoint.x + rect.width * 0.5f) / rect.width,
-            (localPoint.y + rect.height * 0.5f) / rect.height);
+            (localPos.x + rect.width * 0.5f) / rect.width,
+            (localPos.y + rect.height * 0.5f) / rect.height);
     }
 
     private void DrawAtMousePosition()
@@ -180,18 +176,34 @@ public class Draw : MonoBehaviour
 
     private void DrawAt(int x, int y)
     {
+        float radius = brushSize;
+        float hardness = brushHardness;
+
         for (int i = -brushSize; i <= brushSize; i++)
         {
             for (int j = -brushSize; j <= brushSize; j++)
             {
                 int px = x + i;
                 int py = y + j;
+
                 if (px >= 0 && py >= 0 && px < playerTexture.width && py < playerTexture.height)
                 {
-                    playerTexture.SetPixel(px, py, drawColor);
+                    float distance = Mathf.Sqrt(i * i + j * j);
+                    if (distance <= radius)
+                    {
+                        float alpha = Mathf.Clamp01(1f - (distance / radius));
+                        alpha = Mathf.Pow(alpha, 1f / hardness);
+
+                        Color existingColor = playerTexture.GetPixel(px, py);
+                        Color blendedColor = Color.Lerp(existingColor, drawColor, alpha * drawColor.a);
+                        blendedColor.a = Mathf.Clamp01(existingColor.a + alpha * drawColor.a);
+
+                        playerTexture.SetPixel(px, py, blendedColor);
+                    }
                 }
             }
         }
+
         playerTexture.Apply();
     }
 
