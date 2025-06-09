@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 48e19de7b0c646245b7e684f618f984f
   - enabled: 1
-    path: Assets/Scenes/Minigame - Drawing.unity
+    path: Assets/Scenes/DrawingMinigame.unity
     guid: 8ffcd9029a5ae2e4dbbcdbf0cc2049e0
   - enabled: 1
     path: Assets/Scenes/MusicMinigameTest.unity
@@ -36,7 +36,7 @@ EditorBuildSettings:
     path: Assets/Scenes/BadEnding.unity
     guid: 79f3958fea73fae4cb9ec4e879d4e40e
   - enabled: 1
-    path: Assets/Scenes/Final-Bueno.unity
+    path: Assets/Scenes/FinalBueno.unity
     guid: d9bbce87f185824478731403b37d99cc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

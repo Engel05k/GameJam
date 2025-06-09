@@ -92,7 +92,7 @@ public class Draw : MonoBehaviour
         {
             if (pixels[i].a > 0)
             {
-                pixels[i].a = 0.5f; //opacidad del 50%
+                pixels[i].a = 0.7f; //opacidad del 50%
             }
         }
 

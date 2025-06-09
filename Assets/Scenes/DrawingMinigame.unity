@@ -682,7 +682,6 @@ RectTransform:
   - {fileID: 1276627364}
   - {fileID: 1253242170}
   - {fileID: 1339511752}
-  - {fileID: 1354373021}
   - {fileID: 1594811529}
   - {fileID: 703691342}
   m_Father: {fileID: 0}
@@ -1237,78 +1236,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339511751}
   m_CullTransparentMesh: 1
---- !u!1 &1354373020
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1354373021}
-  - component: {fileID: 1354373023}
-  - component: {fileID: 1354373022}
-  m_Layer: 5
-  m_Name: Debajo (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1354373021
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354373020}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.925, y: 0.8862656, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 993769091}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47, y: -20}
-  m_SizeDelta: {x: 1099.56, y: 717.25}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1354373022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354373020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &1354373023
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354373020}
-  m_CullTransparentMesh: 1
 --- !u!1 &1425731257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,10 +1418,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCanvasImage: {fileID: 1594811530}
   referenceCanvasImage: {fileID: 1339511753}
-  patternTextures:
-  - {fileID: 2800000, guid: 3bfc43b4d03760841b367490a932deb9, type: 3}
+  patternSprites:
+  - {fileID: -4413713932758623889, guid: 5681c325d37d9d045b5214a7d88b420e, type: 3}
   drawColor: {r: 0, g: 0, b: 0, a: 1}
-  brushSize: 7
+  brushSize: 2
+  brushHardness: 0.8
   resultText: {fileID: 703691343}
 --- !u!4 &2038313029
 Transform:
